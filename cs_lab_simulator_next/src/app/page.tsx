@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <>
       
-      <div className="grid grid-rows-[auto_1fr_20px] items-center justify-items-center min-h-screen pb-20 font-[family-name:var(--font-geist-sans)] bg-white">
+      <div className="grid grid-rows-[auto_1fr_20px] items-center justify-items-center pb-0 min-h-screen font-[family-name:var(--font-geist-sans)] bg-white">
         <nav className="w-full flex flex-col sm:flex-row items-center justify-between py-4 px-4 sm:px-8 row-start-1 gap-4 sm:gap-0 bg-[#C6F7A5] mb-0">
           <Link href="/" className={`text-xl font-extrabold transition-colors mb-2 sm:mb-0 ${pathname === '/' ? 'text-black' : 'text-gray-700 hover:text-gray-700'}`}>CS Lab Simulator</Link>
           <div className="flex flex-wrap justify-center items-center space-x-4 sm:space-x-20 w-full sm:w-auto">
@@ -178,7 +178,7 @@ export default function Home() {
             </div>
           </section>
           {/* Features Section */}
-          <section className="w-full max-w-2xl mx-auto mt-40">
+          <section className="w-full max-w-3xl mx-auto mt-40 ">
             <div className="flex flex-col items-center mb-8">
               <div className="bg-[#D4FF5B] px-12 py-4 rounded border border-black text-2xl font-extrabold mb-4 text-center text-black">
                 FEATURES
@@ -189,7 +189,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col gap-4">
               {/* Card 1: Hover to expand */}
-              <div className="group bg-white border border-black rounded-2xl shadow-md transition-all transition-colors duration-500 hover:bg-[#D4FF5B]">
+              <div className="group bg-white border border-black rounded-2xl border-b-4 shadow-md transition-all transition-colors duration-500 hover:bg-[#D4FF5B]">
                 <div className="flex items-center justify-between px-6 py-4 cursor-pointer">
                   <span className="text-2xl font-extrabold text-black">01</span>
                   <span className="ml-4 font-semibold text-lg text-black">Consultation</span>
@@ -200,7 +200,7 @@ export default function Home() {
                 </div>
               </div>
               {/* Card 2: Hover to expand */}
-              <div className="group bg-white border border-black rounded-2xl shadow-md transition-all transition-colors duration-500 hover:bg-[#D4FF5B]">
+              <div className="group bg-white border border-black rounded-2xl border-b-4 shadow-md transition-all transition-colors duration-500 hover:bg-[#D4FF5B]">
                 <div className="flex items-center justify-between px-6 py-4 cursor-pointer">
                   <span className="text-2xl font-extrabold text-black">02</span>
                   <span className="ml-4 font-semibold text-lg text-black">Research and Strategy Development</span>
@@ -211,7 +211,7 @@ export default function Home() {
                 </div>
               </div>
               {/* Card 3: Hover to expand */}
-              <div className="group bg-white border border-black rounded-2xl shadow-md transition-all transition-colors duration-500 hover:bg-[#D4FF5B]">
+              <div className="group bg-white border border-black rounded-2xl border-b-4 shadow-md transition-all transition-colors duration-500 hover:bg-[#D4FF5B]">
                 <div className="flex items-center justify-between px-6 py-4 cursor-pointer">
                   <span className="text-2xl font-extrabold text-black">03</span>
                   <span className="ml-4 font-semibold text-lg text-black">Implementation</span>
@@ -222,7 +222,7 @@ export default function Home() {
                 </div>
               </div>
               {/* Card 4: Hover to expand */}
-              <div className="group bg-white border border-black rounded-2xl shadow-md transition-all transition-colors duration-500 hover:bg-[#D4FF5B]">
+              <div className="group bg-white border border-black rounded-2xl border-b-4 shadow-md transition-all transition-colors duration-500 hover:bg-[#D4FF5B]">
                 <div className="flex items-center justify-between px-6 py-4 cursor-pointer">
                   <span className="text-2xl font-extrabold text-black">04</span>
                   <span className="ml-4 font-semibold text-lg text-black">Monitoring and Optimization</span>
@@ -233,7 +233,7 @@ export default function Home() {
                 </div>
               </div>
               {/* Card 5: Hover to expand */}
-              <div className="group bg-white border border-black rounded-2xl shadow-md transition-all transition-colors duration-500 hover:bg-[#D4FF5B]">
+              <div className="group bg-white border border-black rounded-2xl border-b-4 shadow-md transition-all transition-colors duration-500 hover:bg-[#D4FF5B]">
                 <div className="flex items-center justify-between px-6 py-4 cursor-pointer">
                   <span className="text-2xl font-extrabold text-black">05</span>
                   <span className="ml-4 font-semibold text-lg text-black">Reporting and Communication</span>
@@ -244,7 +244,7 @@ export default function Home() {
                 </div>
               </div>
               {/* Card 6: Hover to expand */}
-              <div className="group bg-white border border-black rounded-2xl shadow-md transition-all transition-colors duration-500 hover:bg-[#D4FF5B]">
+              <div className="group bg-white border border-black rounded-2xl border-b-4 shadow-md transition-all transition-colors duration-500 hover:bg-[#D4FF5B]">
                 <div className="flex items-center justify-between px-6 py-4 cursor-pointer">
                   <span className="text-2xl font-extrabold text-black">06</span>
                   <span className="ml-4 font-semibold text-lg text-black">Continual Improvement</span>
@@ -256,9 +256,73 @@ export default function Home() {
               </div>
             </div>
           </section>
-          <section className="mt-20 w-full px-4">
-            <div className=""></div>
-          </section>
+          <div className="mt-24 w-full px-2 flex justify-center">
+            <div className="flex flex-col md:flex-row item-center justify-between bg-white rounded-2xl shadow-2xl px-8 py-8 md:py-12 md:px-12 w-full max-w-4xl relative z-10">
+              {/* Email */}
+              <div className="flex items-center gap-4 flex-1">
+                <span className="bg-[#D4FF5B] rounded-full p-4 flex item-center justify-center">
+                  {/* Email icon */}
+                  <Image src="/mail-fill.svg" alt="Mail" width={28} height={28} />
+                </span>
+                <span className="text-sm font-medium text-black">ankitamohanty725@gmail.com</span>
+              </div>
+              {/* Divider */}
+              <div className="md-block w-[3px] h-16 bg-[#6C6C72] mx-8"></div>
+              {/* phone */}
+              <div className="flex items-center gap-4 flex-1 mt-6 md:mt-0">
+                <span className="bg-[#D4FF5B] rounded-full p-4 flex item-center justify-center">
+                  {/* phone icon */}
+                  <Image src="/phone-fill.svg" alt="Phone" width={28} height={28} />
+                </span>
+                <span className="text-sm font-medium text-black">+91 7735177591</span>
+              </div>
+            </div>
+          </div>
+          <footer className="w-full bg-gradient-to-b from-white to-[#D4FF5B] pt-40 pb-8 mt-[-60px] relative z-0">
+  <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-12">
+    {/* Logo/Description/Socials */}
+    <div>
+      <div className="font-extrabold text-2xl mb-2 text-black">LOGO</div>
+      <p className="text-sm text-black mb-6">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra nunc ante velit vitae. Est tellus vitae, nullam lobortis enim.
+      </p>
+      <div className="flex gap-6 text-2xl">
+        {/* Replace with your own icons/links */}
+        <a href="#"><i className="fab fa-github"></i></a>
+        <a href="#"><i className="far fa-envelope"></i></a>
+        <a href="#"><i className="fab fa-x-twitter"></i></a>
+        <a href="#"><i className="fab fa-linkedin"></i></a>
+      </div>
+    </div>
+    {/* Quick Links */}
+    <div>
+      <div className="font-extrabold text-lg mb-2 text-black">QUICK LINK</div>
+      <ul className="space-y-2 text-black">
+        <li><a href="#">About</a></li>
+        <li><a href="#">Features</a></li>
+        <li><a href="#">Screenshot</a></li>
+        <li><a href="#">Blog</a></li>
+      </ul>
+    </div>
+    {/* Newsletter */}
+    <div>
+      <div className="font-extrabold text-lg mb-2 text-black">NEWS LETTER</div>
+      <p className="text-sm text-black mb-4">Subscribe our newsletter to get our latest update & news</p>
+      <form className="flex">
+        <input type="email" placeholder="Your email address" className="flex-1 px-4 py-2 rounded-l border border-black focus:outline-none text-black"/>
+        <button type="submit" className="bg-black text-[#D4FF5B] px-4 py-2 rounded-r border border-black flex items-center">
+          {/* Arrow icon */}
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke="#D4FF5B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+        </button>
+      </form>
+    </div>
+  </div>
+  {/* Divider and copyright */}
+  <div className="max-w-6xl mx-auto mt-12 border-t border-black pt-4 flex flex-col md:flex-row items-center justify-between text-sm text-black">
+    <span>&copy; Copyright 2025 .Ojjomedia. All Right Reserved.</span>
+    {/* Add any extra icons or links here if needed */}
+  </div>
+</footer>
       </main>    
     </div>
     </>
