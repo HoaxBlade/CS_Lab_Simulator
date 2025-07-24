@@ -282,7 +282,7 @@ export default function Home() {
             {/* FAQ Title */}
             <div className="relative mb-4">
               <div className="absolute left-2 top-2 w-full h-full bg-[#D4FF5B] rounded"></div>
-              <div className="relative bg-white border border-black rounded px-12 py-4 text-3xl font-extrabold text-center z-10">
+              <div className="relative bg-white border border-black rounded px-12 py-4 text-3xl text-black font-extrabold text-center z-10">
                 FAQs
               </div>
             </div>
@@ -374,8 +374,8 @@ export default function Home() {
               </div>
             </div>
             {/* Divider and copyright */}
-            <div className="max-w-6xl mx-auto mt-12 border-t border-black pt-4 flex flex-col md:flex-row items-center justify-between text-sm text-black">
-              <span>&copy; Copyright 2025 .Ojjomedia. All Right Reserved.</span>
+            <div className="max-w-6xl mx-auto mt-12 border-t border-black pt-4 flex flex-col items-center justify-center text-sm text-black text-center">
+              <span>&copy; Copyright 2025 All Right Reserved.</span>
               {/* Add any extra icons or links here if needed */}
             </div>
 
