@@ -376,7 +376,6 @@ export default function Home() {
             {/* Divider and copyright */}
             <div className="max-w-6xl mx-auto mt-12 border-t border-black pt-4 flex flex-col items-center justify-center text-sm text-black text-center">
               <span>&copy; Copyright 2025 All Right Reserved.</span>
-              {/* Add any extra icons or links here if needed */}
             </div>
 
             {/* Ester egg*/}
