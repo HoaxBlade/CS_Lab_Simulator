@@ -6,44 +6,68 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useRef, useEffect } from 'react';
+import { supabase } from './lib/supabase';
 
 export default function Home() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [user, setUser] = useState<{ id: string; email?: string } | null>(null);
+  const [loading, setLoading] = useState(true);
   const mascotRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    checkUser();
+    
     function handleClickOutside(event: MouseEvent) {
       if (mascotRef.current && !mascotRef.current.contains(event.target as Node)) {
         setMenuOpen(false);
       }
     }
-    if (menuOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-    } else {
-      document.removeEventListener('mousedown', handleClickOutside);
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const checkUser = async () => {
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      setUser(user);
+    } catch (error) {
+      console.error('Error checking user:', error);
+    } finally {
+      setLoading(false);
     }
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [menuOpen]);
+  };
 
   return (
     <>
       
       <div className="grid grid-rows-[auto_1fr_20px] items-center justify-items-center pb-0 min-h-screen font-[family-name:var(--font-geist-sans)] bg-white">
+        {/* Navbar */}
         <nav className="w-full flex flex-col sm:flex-row items-center justify-between py-4 px-4 sm:px-8 row-start-1 gap-4 sm:gap-0 bg-[#C6F7A5] mb-0">
-          <Link href="/" className={`text-xl font-extrabold transition-colors mb-2 sm:mb-0 ${pathname === '/' ? 'text-black' : 'text-gray-700 hover:text-gray-700'}`}>CS Lab Simulator</Link>
-          <div className="flex flex-wrap justify-center items-center space-x-4 sm:space-x-20 w-full sm:w-auto">
-            <a href="/services" className={`transition-colors ${pathname === '/services' ? 'text-black font-bold' : 'text-gray-600 hover:text-black transform:text duration-300 font-semibold'}`}>Services</a>
-            <a href="/features" className={`transition-colors ${pathname === '/features' ? 'text-black font-bold' : 'text-gray-600 hover:text-black transform:text duration-300 font-semibold'}`}>Features</a>
-            <a href="/pricing" className={`transition-colors ${pathname === '/pricing' ? 'text-black font-bold' : 'text-gray-600 hover:text-black transform:text duration-300 font-semibold'}`}>Pricing</a>
-            <a href="/faq" className={`transition-colors ${pathname === '/faq' ? 'text-black font-bold' : 'text-gray-600 hover:text-black transform:text duration-300 font-semibold'}`}>FAQ</a>
-            <a href="/simulation" className={`transition-colors ${pathname === '/simulation' ? 'text-black font-bold' : 'text-gray-600 hover:text-black transform:text duration-300 font-semibold'}`}>Simulation</a>
+          <Link href="/" className={`text-lg sm:text-xl font-extrabold transition-colors mb-2 sm:mb-0 text-center sm:text-left ${pathname === '/' ? 'text-black' : 'text-gray-700 hover:text-gray-700'}`}>CS Lab Simulator</Link>
+          <div className="flex flex-wrap justify-center items-center space-x-2 sm:space-x-4 md:space-x-20 w-full sm:w-auto">
+            <a href="/services" className={`transition-colors text-sm sm:text-base ${pathname === '/services' ? 'text-black font-bold' : 'text-gray-600 hover:text-black transform:text duration-300 font-semibold'}`}>Services</a>
+            <a href="/features" className={`transition-colors text-sm sm:text-base ${pathname === '/features' ? 'text-black font-bold' : 'text-gray-600 hover:text-black transform:text duration-300 font-semibold'}`}>Features</a>
+            <a href="/pricing" className={`transition-colors text-sm sm:text-base ${pathname === '/pricing' ? 'text-black font-bold' : 'text-gray-600 hover:text-black transform:text duration-300 font-semibold'}`}>Pricing</a>
+            <a href="/faq" className={`transition-colors text-sm sm:text-base ${pathname === '/faq' ? 'text-black font-bold' : 'text-gray-600 hover:text-black transform:text duration-300 font-semibold'}`}>FAQ</a>
+            <Link href="/dashboard/labs" className={`transition-colors text-sm sm:text-base ${pathname === '/dashboard/labs' ? 'text-black font-bold' : 'text-gray-600 hover:text-black transform:text duration-300 font-semibold'}`}>Simulation</Link>
           </div>
-          <div className="flex items-center space-x-4 sm:space-x-6 mt-2 sm:mt-0">
-            <Link href="/signup" className={`transition-colors ${pathname === '/signup' ? 'text-black font-bold' : 'text-gray-600 hover:text-black font-bold'}`}>Sign Up</Link>
-            <Link href="/signin" className={`transition-colors transition-shadow duration-300 font-semibold shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1),0_4px_6px_-4px_rgba(0,0,0,0.1)] hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.25),0_4px_6px_-4px_rgba(0,0,0,0.25)]`} style={{ backgroundColor: '#D4FF5B', paddingLeft: '2.25rem', paddingRight: '2.25rem', paddingTop: '0.5rem', paddingBottom: '0.5rem', borderRadius: '0.5rem', fontWeight: 'bold', color: pathname === '/signin' ? 'black' : '#222' }}>Sign In</Link>
+          <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 sm:space-x-6 mt-2 sm:mt-0">
+            {!loading && (
+              <>
+                {user ? (
+                  <Link href="/dashboard" className="bg-[#D4FF5B] text-black font-semibold px-4 sm:px-6 py-2 rounded-lg border border-black border-b-4 shadow-md hover:bg-[#C6F7A5] transition-all duration-300 w-full sm:w-auto text-center text-sm sm:text-base">
+                    Dashboard
+                  </Link>
+                ) : (
+                  <>
+                    <Link href="/signup" className={`transition-colors text-sm sm:text-base text-center ${pathname === '/signup' ? 'text-black font-bold' : 'text-gray-600 hover:text-black font-bold'}`}>Sign Up</Link>
+                    <Link href="/signin" className={`transition-colors transition-shadow duration-300 font-semibold shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1),0_4px_6px_-4px_rgba(0,0,0,0.1)] hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.25),0_4px_6px_-4px_rgba(0,0,0,0.25)] w-full sm:w-auto text-center`} style={{ backgroundColor: '#D4FF5B', paddingLeft: '1rem', paddingRight: '1rem', paddingTop: '0.5rem', paddingBottom: '0.5rem', borderRadius: '0.5rem', fontWeight: 'bold', color: pathname === '/signin' ? 'black' : '#222' }}>Sign In</Link>
+                  </>
+                )}
+              </>
+            )}
           </div>
         </nav>
         <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start w-full">
